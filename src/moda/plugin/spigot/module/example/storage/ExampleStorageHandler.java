@@ -1,4 +1,4 @@
-package xyz.derkades.modaexample.storage;
+package moda.plugin.spigot.module.example.storage;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package xyz.derkades.modaexample;
+package moda.plugin.spigot.module.example;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,17 +9,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import com.mineglade.moda.modules.ExternalModule;
 import com.mineglade.moda.modules.IMessage;
+import com.mineglade.moda.modules.Module;
 import com.mineglade.moda.utils.BukkitFuture;
 import com.mineglade.moda.utils.storage.DatabaseStorageHandler;
 import com.mineglade.moda.utils.storage.FileStorageHandler;
 
-import xyz.derkades.modaexample.storage.ExampleDatabaseStorageHandler;
-import xyz.derkades.modaexample.storage.ExampleFileStorageHandler;
-import xyz.derkades.modaexample.storage.ExampleStorageHandler;
+import moda.plugin.spigot.module.example.storage.ExampleDatabaseStorageHandler;
+import moda.plugin.spigot.module.example.storage.ExampleFileStorageHandler;
+import moda.plugin.spigot.module.example.storage.ExampleStorageHandler;
 
-public class ExampleModule extends ExternalModule<ExampleStorageHandler> {
+public class ExampleModule extends Module<ExampleStorageHandler> {
 
 	private final Map<UUID, Integer> BROKEN_BLOCKS = new HashMap<>();
 

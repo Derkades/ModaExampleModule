@@ -1,4 +1,4 @@
-package xyz.derkades.modaexample.storage;
+package moda.plugin.spigot.module.example.storage;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
