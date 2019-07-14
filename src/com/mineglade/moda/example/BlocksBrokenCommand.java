@@ -7,8 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.mineglade.moda.example.storage.ExampleStorageHandler;
-import com.mineglade.moda.lib.derkutils.bukkit.BukkitFuture;
 import com.mineglade.moda.modules.LangFile;
+import com.mineglade.moda.utils.BukkitFuture;
 
 public class BlocksBrokenCommand extends Command {
 
@@ -29,7 +29,7 @@ public class BlocksBrokenCommand extends Command {
 		}
 
 		final Player player = (Player) sender;
-
+		
 		final BukkitFuture<Integer> future = this.storage.getBrokenBlocks(player.getUniqueId());
 
 		future.onComplete((i) -> {
