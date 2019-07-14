@@ -1,4 +1,4 @@
-package moda.plugin.spigot.module.example.storage;
+package com.mineglade.moda.example.storage;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

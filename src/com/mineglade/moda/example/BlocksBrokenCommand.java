@@ -1,4 +1,4 @@
-package moda.plugin.spigot.module.example;
+package com.mineglade.moda.example;
 
 import java.util.Arrays;
 
@@ -6,10 +6,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.mineglade.moda.example.storage.ExampleStorageHandler;
 import com.mineglade.moda.lib.derkutils.bukkit.BukkitFuture;
 import com.mineglade.moda.modules.LangFile;
-
-import moda.plugin.spigot.module.example.storage.ExampleStorageHandler;
 
 public class BlocksBrokenCommand extends Command {
 

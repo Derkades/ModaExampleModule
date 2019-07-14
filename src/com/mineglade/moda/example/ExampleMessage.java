@@ -1,4 +1,4 @@
-package moda.plugin.spigot.module.example;
+package com.mineglade.moda.example;
 
 import com.mineglade.moda.modules.IMessage;
 
