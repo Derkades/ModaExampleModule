@@ -1,1 +1,1 @@
-main: 'xyz.derkades.modaexample.ExampleModule'
+main: 'moda.plugin.module.example.ExampleModule'

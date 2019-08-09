@@ -1,4 +1,4 @@
-package com.mineglade.moda.example.storage;
+package moda.plugin.module.example.storage;
 
 import java.util.UUID;
 

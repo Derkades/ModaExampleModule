@@ -1,4 +1,4 @@
-package com.mineglade.moda.example;
+package moda.plugin.module.example;
 
 import com.mineglade.moda.modules.IMessage;
 

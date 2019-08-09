@@ -1,4 +1,4 @@
-package com.mineglade.moda.example;
+package moda.plugin.module.example;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,14 +9,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import com.mineglade.moda.example.storage.ExampleDatabaseStorageHandler;
-import com.mineglade.moda.example.storage.ExampleFileStorageHandler;
-import com.mineglade.moda.example.storage.ExampleStorageHandler;
 import com.mineglade.moda.modules.IMessage;
 import com.mineglade.moda.modules.Module;
 import com.mineglade.moda.utils.BukkitFuture;
 import com.mineglade.moda.utils.storage.DatabaseStorageHandler;
 import com.mineglade.moda.utils.storage.FileStorageHandler;
+
+import moda.plugin.module.example.storage.ExampleDatabaseStorageHandler;
+import moda.plugin.module.example.storage.ExampleFileStorageHandler;
+import moda.plugin.module.example.storage.ExampleStorageHandler;
 
 public class ExampleModule extends Module<ExampleStorageHandler> {
 
