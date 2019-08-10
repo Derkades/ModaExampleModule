@@ -6,9 +6,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.mineglade.moda.modules.LangFile;
-import com.mineglade.moda.utils.BukkitFuture;
-
+import moda.plugin.moda.modules.LangFile;
+import moda.plugin.moda.utils.BukkitFuture;
 import moda.plugin.module.example.storage.ExampleStorageHandler;
 
 public class BlocksBrokenCommand extends Command {

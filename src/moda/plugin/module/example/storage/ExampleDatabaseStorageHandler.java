@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import com.mineglade.moda.modules.Module;
-import com.mineglade.moda.utils.BukkitFuture;
-import com.mineglade.moda.utils.storage.DatabaseStorageHandler;
+import moda.plugin.moda.modules.Module;
+import moda.plugin.moda.utils.BukkitFuture;
+import moda.plugin.moda.utils.storage.DatabaseStorageHandler;
 
 public class ExampleDatabaseStorageHandler extends DatabaseStorageHandler implements ExampleStorageHandler {
 

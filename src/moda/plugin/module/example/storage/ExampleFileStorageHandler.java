@@ -2,10 +2,10 @@ package moda.plugin.module.example.storage;
 
 import java.util.UUID;
 
-import com.mineglade.moda.modules.Module;
-import com.mineglade.moda.utils.BukkitFuture;
-import com.mineglade.moda.utils.storage.FileStorageHandler;
-import com.mineglade.moda.utils.storage.ModuleStorageHandler;
+import moda.plugin.moda.modules.Module;
+import moda.plugin.moda.utils.BukkitFuture;
+import moda.plugin.moda.utils.storage.FileStorageHandler;
+import moda.plugin.moda.utils.storage.ModuleStorageHandler;
 
 public class ExampleFileStorageHandler extends FileStorageHandler implements ExampleStorageHandler {
 

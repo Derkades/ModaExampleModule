@@ -1,6 +1,6 @@
 package moda.plugin.module.example;
 
-import com.mineglade.moda.modules.IMessage;
+import moda.plugin.moda.modules.IMessage;
 
 public enum ExampleMessage implements IMessage {
 
