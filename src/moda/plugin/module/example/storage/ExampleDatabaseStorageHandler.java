@@ -44,6 +44,4 @@ public class ExampleDatabaseStorageHandler extends DatabaseStorageHandler implem
 			}
 		});
 	}
-
-
 }
