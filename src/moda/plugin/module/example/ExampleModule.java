@@ -1,5 +1,6 @@
 package moda.plugin.module.example;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -15,8 +16,8 @@ import moda.plugin.moda.utils.BukkitFuture;
 import moda.plugin.moda.utils.storage.DatabaseStorageHandler;
 import moda.plugin.moda.utils.storage.FileStorageHandler;
 import moda.plugin.module.example.storage.ExampleDatabaseStorageHandler;
-import moda.plugin.module.example.storage.ExampleFileStorageHandler;
 import moda.plugin.module.example.storage.ExampleStorageHandler;
+import moda.plugin.module.example.storage.ExampleYamlStorageHandler;
 
 public class ExampleModule extends Module<ExampleStorageHandler> {
 
@@ -40,16 +41,17 @@ public class ExampleModule extends Module<ExampleStorageHandler> {
 	}
 
 	@Override
-	public FileStorageHandler getFileStorageHandler() {
-		return new ExampleFileStorageHandler(this);
+	public FileStorageHandler getFileStorageHandler() throws IOException {
+		// You may choose between writing a YAML or Json storage handler.
+		return new ExampleYamlStorageHandler(this);
 	}
 
 	@Override
 	public void onEnable() {
-		this.registerCommand(new BlocksBrokenCommand(this.lang, this.storage));
+		this.registerCommand(new BlocksBrokenCommand(getLang(), getStorage()));
 
 		// You must use the module scheduler, not the bukkit scheduler!
-		this.scheduler.intervalAsync(5*60*20, 5*60*20, this::save);
+		getScheduler().intervalAsync(5*60*20, 5*60*20, this::save);
 	}
 
 	@Override
@@ -62,7 +64,7 @@ public class ExampleModule extends Module<ExampleStorageHandler> {
 	 */
 	private void save() {
 		this.BROKEN_BLOCKS.forEach((uuid, amount) -> {
-			final BukkitFuture<Boolean> future = this.storage.addBrokenBlocks(uuid, amount);
+			final BukkitFuture<Boolean> future = getStorage().addBrokenBlocks(uuid, amount);
 			future.onException((e) -> e.printStackTrace());
 		});
 		this.BROKEN_BLOCKS.clear();

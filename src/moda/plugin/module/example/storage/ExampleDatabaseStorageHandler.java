@@ -17,7 +17,7 @@ public class ExampleDatabaseStorageHandler extends DatabaseStorageHandler implem
 
 	@Override
 	public void setup() throws SQLException {
-		this.db.createTableIfNonexistent("moda_blocksbroken", "CREATE TABLE `" + this.db.getDatabase() + "`.`moda_blocksbroken` "
+		this.db.createTableIfNonexistent("moda_blocksbroken", "CREATE TABLE `blocksbroken` "
 				+ "(`uuid` VARCHAR(100) NOT NULL, `blocksbroken` INT() NOT NULL, PRIMARY KEY (`uuid`)) ENGINE = InnoDB");
 	}
 
