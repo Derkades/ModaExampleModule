@@ -4,7 +4,7 @@ import moda.plugin.moda.modules.IMessage;
 
 public enum ExampleMessage implements IMessage {
 
-	COMMAND_NOTPLAYER("command.note-player", "You must execute this command as a player."),
+	COMMAND_NOTPLAYER("command.not-player", "You must execute this command as a player."),
 	COMMAND_BLOCKSBROKEN("command.blocks-broken", "You have broken {amount} blocks."),
 	COMMAND_ERROR("command.error", "An error occured when trying to retrieve the number of broken blocks."),
 
