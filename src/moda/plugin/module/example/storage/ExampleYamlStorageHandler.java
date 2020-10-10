@@ -1,12 +1,12 @@
 package moda.plugin.module.example.storage;
 
+import moda.plugin.moda.module.Module;
+import moda.plugin.moda.module.storage.ModuleStorageHandler;
+import moda.plugin.moda.module.storage.YamlStorageHandler;
+import moda.plugin.moda.util.BukkitFuture;
+
 import java.io.IOException;
 import java.util.UUID;
-
-import moda.plugin.moda.modules.Module;
-import moda.plugin.moda.utils.BukkitFuture;
-import moda.plugin.moda.utils.storage.ModuleStorageHandler;
-import moda.plugin.moda.utils.storage.YamlStorageHandler;
 
 public class ExampleYamlStorageHandler extends YamlStorageHandler implements ExampleStorageHandler {
 

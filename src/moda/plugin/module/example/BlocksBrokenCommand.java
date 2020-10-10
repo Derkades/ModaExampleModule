@@ -1,14 +1,13 @@
 package moda.plugin.module.example;
 
-import java.util.Arrays;
-
+import moda.plugin.moda.module.LangFile;
+import moda.plugin.moda.util.BukkitFuture;
+import moda.plugin.module.example.storage.ExampleStorageHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import moda.plugin.moda.modules.LangFile;
-import moda.plugin.moda.utils.BukkitFuture;
-import moda.plugin.module.example.storage.ExampleStorageHandler;
+import java.util.Arrays;
 
 public class BlocksBrokenCommand extends Command {
 

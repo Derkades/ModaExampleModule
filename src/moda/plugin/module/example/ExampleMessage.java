@@ -1,6 +1,6 @@
 package moda.plugin.module.example;
 
-import moda.plugin.moda.modules.IMessage;
+import moda.plugin.moda.module.IMessage;
 
 public enum ExampleMessage implements IMessage {
 

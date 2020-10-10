@@ -1,13 +1,13 @@
 package moda.plugin.module.example.storage;
 
+import moda.plugin.moda.module.Module;
+import moda.plugin.moda.module.storage.DatabaseStorageHandler;
+import moda.plugin.moda.util.BukkitFuture;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
-
-import moda.plugin.moda.modules.Module;
-import moda.plugin.moda.utils.BukkitFuture;
-import moda.plugin.moda.utils.storage.DatabaseStorageHandler;
 
 public class ExampleDatabaseStorageHandler extends DatabaseStorageHandler implements ExampleStorageHandler {
 

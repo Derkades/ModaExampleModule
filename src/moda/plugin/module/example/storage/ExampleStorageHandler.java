@@ -1,9 +1,9 @@
 package moda.plugin.module.example.storage;
 
-import java.util.UUID;
+import moda.plugin.moda.module.storage.ModuleStorageHandler;
+import moda.plugin.moda.util.BukkitFuture;
 
-import moda.plugin.moda.utils.BukkitFuture;
-import moda.plugin.moda.utils.storage.ModuleStorageHandler;
+import java.util.UUID;
 
 public interface ExampleStorageHandler extends ModuleStorageHandler {
 
