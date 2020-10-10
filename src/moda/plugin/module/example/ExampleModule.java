@@ -1,22 +1,24 @@
 package moda.plugin.module.example;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.BlockBreakEvent;
+
 import moda.plugin.moda.module.IMessage;
 import moda.plugin.moda.module.Module;
+import moda.plugin.moda.module.command.ModuleCommandBuilder;
 import moda.plugin.moda.module.storage.DatabaseStorageHandler;
 import moda.plugin.moda.module.storage.FileStorageHandler;
 import moda.plugin.moda.util.BukkitFuture;
 import moda.plugin.module.example.storage.ExampleDatabaseStorageHandler;
 import moda.plugin.module.example.storage.ExampleStorageHandler;
 import moda.plugin.module.example.storage.ExampleYamlStorageHandler;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.BlockBreakEvent;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class ExampleModule extends Module<ExampleStorageHandler> {
 
@@ -47,7 +49,10 @@ public class ExampleModule extends Module<ExampleStorageHandler> {
 
 	@Override
 	public void onEnable() {
-		this.registerCommand(new BlocksBrokenCommand(getLang(), getStorage()));
+		this.registerCommand(new ModuleCommandBuilder("blocksbroken")
+									.withDescription("View numer of blocks broken")
+									.withExecutor(new BlocksBrokenCommand(this))
+									.create());
 
 		// You must use the module scheduler, not the bukkit scheduler!
 		getScheduler().intervalAsync(5*60*20, 5*60*20, this::save);
