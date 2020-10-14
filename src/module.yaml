@@ -1,1 +1,1 @@
-main: 'moda.plugin.module.example.ExampleModule'
+main: 'ExampleModule'

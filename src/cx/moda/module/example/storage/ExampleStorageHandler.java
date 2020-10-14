@@ -1,4 +1,4 @@
-package moda.plugin.module.example.storage;
+package cx.moda.module.example.storage;
 
 import moda.plugin.moda.module.storage.ModuleStorageHandler;
 import moda.plugin.moda.util.BukkitFuture;

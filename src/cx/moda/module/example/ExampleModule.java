@@ -1,10 +1,12 @@
-package moda.plugin.module.example;
+package cx.moda.module.example;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import cx.moda.module.example.storage.ExampleStorageHandler;
+import cx.moda.module.example.storage.ExampleYamlStorageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,9 +18,7 @@ import moda.plugin.moda.module.command.ModuleCommandBuilder;
 import moda.plugin.moda.module.storage.DatabaseStorageHandler;
 import moda.plugin.moda.module.storage.FileStorageHandler;
 import moda.plugin.moda.util.BukkitFuture;
-import moda.plugin.module.example.storage.ExampleDatabaseStorageHandler;
-import moda.plugin.module.example.storage.ExampleStorageHandler;
-import moda.plugin.module.example.storage.ExampleYamlStorageHandler;
+import cx.moda.module.example.storage.ExampleDatabaseStorageHandler;
 
 public class ExampleModule extends Module<ExampleStorageHandler> {
 

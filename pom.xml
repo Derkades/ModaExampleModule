@@ -59,9 +59,10 @@
         </dependency>
 
         <dependency>
-            <groupId>moda.plugin</groupId>
+            <groupId>cx.moda</groupId>
             <artifactId>moda</artifactId>
-            <version>canary</version>
+            <version>alpha</version>
+            <scope>provided</scope>
         </dependency>
         
         <dependency>

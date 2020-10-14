@@ -1,4 +1,4 @@
-package moda.plugin.module.example;
+package cx.moda.module.example;
 
 import moda.plugin.moda.module.IMessage;
 

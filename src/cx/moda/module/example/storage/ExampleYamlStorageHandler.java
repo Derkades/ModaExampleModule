@@ -1,4 +1,4 @@
-package moda.plugin.module.example.storage;
+package cx.moda.module.example.storage;
 
 import moda.plugin.moda.module.Module;
 import moda.plugin.moda.module.storage.ModuleStorageHandler;
