@@ -5,10 +5,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>moda.plugin.module</groupId>
-    <artifactId>example</artifactId>
+    <groupId>cx.moda.module</groupId>
+    <artifactId>Example</artifactId>
 
-    <name>ExampleModule</name>
+    <name>Example</name>
     <version>1.0</version>
 
     <build>
