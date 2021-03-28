@@ -5,20 +5,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import cx.moda.module.example.storage.ExampleStorageHandler;
-import cx.moda.module.example.storage.ExampleYamlStorageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import moda.plugin.moda.module.IMessage;
-import moda.plugin.moda.module.Module;
-import moda.plugin.moda.module.command.ModuleCommandBuilder;
-import moda.plugin.moda.module.storage.DatabaseStorageHandler;
-import moda.plugin.moda.module.storage.FileStorageHandler;
-import moda.plugin.moda.util.BukkitFuture;
+import cx.moda.moda.module.IMessage;
+import cx.moda.moda.module.Module;
+import cx.moda.moda.module.command.ModuleCommandBuilder;
+import cx.moda.moda.module.storage.DatabaseStorageHandler;
+import cx.moda.moda.module.storage.FileStorageHandler;
 import cx.moda.module.example.storage.ExampleDatabaseStorageHandler;
+import cx.moda.module.example.storage.ExampleStorageHandler;
+import cx.moda.module.example.storage.ExampleYamlStorageHandler;
 
 public class ExampleModule extends Module<ExampleStorageHandler> {
 
@@ -67,11 +66,18 @@ public class ExampleModule extends Module<ExampleStorageHandler> {
 	 * Save stats data from memory to disk
 	 */
 	private void save() {
-		this.BROKEN_BLOCKS.forEach((uuid, amount) -> {
-			final BukkitFuture<Boolean> future = getStorage().addBrokenBlocks(uuid, amount);
-			future.onException((e) -> e.printStackTrace());
+		this.getScheduler().async(() -> {
+			synchronized(this.BROKEN_BLOCKS) {
+				this.BROKEN_BLOCKS.forEach((uuid, amount) -> {
+					try {
+						getStorage().addBrokenBlocks(uuid, amount);
+					} catch (final Exception e) {
+						e.printStackTrace();
+					}
+				});
+				this.BROKEN_BLOCKS.clear();
+			}
 		});
-		this.BROKEN_BLOCKS.clear();
 	}
 
 	// The main class is automatically registered as a listener. Don't register it again!
@@ -79,10 +85,12 @@ public class ExampleModule extends Module<ExampleStorageHandler> {
 	public void onBreak(final BlockBreakEvent event) {
 		final Player player = event.getPlayer();
 		final UUID uuid = player.getUniqueId();
-		if (this.BROKEN_BLOCKS.containsKey(uuid)) {
-			this.BROKEN_BLOCKS.put(uuid, this.BROKEN_BLOCKS.get(uuid) + 1);
-		} else {
-			this.BROKEN_BLOCKS.put(uuid, 1);
+		synchronized(this.BROKEN_BLOCKS) {
+			if (this.BROKEN_BLOCKS.containsKey(uuid)) {
+				this.BROKEN_BLOCKS.put(uuid, this.BROKEN_BLOCKS.get(uuid) + 1);
+			} else {
+				this.BROKEN_BLOCKS.put(uuid, 1);
+			}
 		}
 	}
 

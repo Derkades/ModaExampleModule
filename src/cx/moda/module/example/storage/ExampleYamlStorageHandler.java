@@ -1,12 +1,11 @@
 package cx.moda.module.example.storage;
 
-import moda.plugin.moda.module.Module;
-import moda.plugin.moda.module.storage.ModuleStorageHandler;
-import moda.plugin.moda.module.storage.YamlStorageHandler;
-import moda.plugin.moda.util.BukkitFuture;
-
 import java.io.IOException;
 import java.util.UUID;
+
+import cx.moda.moda.module.Module;
+import cx.moda.moda.module.storage.ModuleStorageHandler;
+import cx.moda.moda.module.storage.YamlStorageHandler;
 
 public class ExampleYamlStorageHandler extends YamlStorageHandler implements ExampleStorageHandler {
 
@@ -15,20 +14,17 @@ public class ExampleYamlStorageHandler extends YamlStorageHandler implements Exa
 	}
 
 	@Override
-	public BukkitFuture<Boolean> addBrokenBlocks(final UUID uuid, final int brokenBlocks) {
-		return new BukkitFuture<>(() -> {
-			if (getYaml().contains(uuid.toString())) {
-				getYaml().set(uuid.toString(), getYaml().getInt(uuid.toString()) + brokenBlocks);
-			} else {
-				getYaml().set(uuid.toString(), brokenBlocks);
-			}
-			return true;
-		});
+	public void addBrokenBlocks(final UUID uuid, final int brokenBlocks) {
+		if (getYaml().contains(uuid.toString())) {
+			getYaml().set(uuid.toString(), getYaml().getInt(uuid.toString()) + brokenBlocks);
+		} else {
+			getYaml().set(uuid.toString(), brokenBlocks);
+		}
 	}
 
 	@Override
-	public BukkitFuture<Integer> getBrokenBlocks(final UUID uuid) {
-		return new BukkitFuture<>(() -> getYaml().getInt(uuid.toString(), 0));
+	public int getBrokenBlocks(final UUID uuid) {
+		return getYaml().getInt(uuid.toString(), 0);
 	}
 
 }

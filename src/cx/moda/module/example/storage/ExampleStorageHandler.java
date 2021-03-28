@@ -1,14 +1,13 @@
 package cx.moda.module.example.storage;
 
-import moda.plugin.moda.module.storage.ModuleStorageHandler;
-import moda.plugin.moda.util.BukkitFuture;
-
 import java.util.UUID;
+
+import cx.moda.moda.module.storage.ModuleStorageHandler;
 
 public interface ExampleStorageHandler extends ModuleStorageHandler {
 
-	public BukkitFuture<Boolean> addBrokenBlocks(UUID uuid, int brokenBlocks);
+	void addBrokenBlocks(UUID uuid, int brokenBlocks) throws Exception;
 
-	public BukkitFuture<Integer> getBrokenBlocks(UUID uuid);
+	int getBrokenBlocks(UUID uuid) throws Exception;
 
 }

@@ -4,8 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import moda.plugin.moda.module.command.ModuleCommandExecutor;
-import moda.plugin.moda.util.BukkitFuture;
+import cx.moda.moda.module.command.ModuleCommandExecutor;
 
 public class BlocksBrokenCommand extends ModuleCommandExecutor<ExampleModule> {
 
@@ -22,16 +21,22 @@ public class BlocksBrokenCommand extends ModuleCommandExecutor<ExampleModule> {
 		}
 
 		final Player player = (Player) sender;
-		
-		final BukkitFuture<Integer> future = this.getModule().getStorage().getBrokenBlocks(player.getUniqueId());
 
-		future.onComplete((i) -> {
-			this.getModule().getLang().send(player, ExampleMessage.COMMAND_BLOCKSBROKEN, "amount", i);
-		});
+		this.getModule().getScheduler().async(() -> {
+			int broken;
+			try {
+				broken = this.getModule().getStorage().getBrokenBlocks(player.getUniqueId());
+			} catch (final Exception e) {
+				this.getModule().getScheduler().run(() -> {
+					this.getModule().getLang().send(player, ExampleMessage.COMMAND_ERROR);
+				});
+				e.printStackTrace();
+				return;
+			}
 
-		future.onException((e) -> {
-			this.getModule().getLang().send(player, ExampleMessage.COMMAND_ERROR);
-			e.printStackTrace();
+			this.getModule().getScheduler().run(() -> {
+				this.getModule().getLang().send(player, ExampleMessage.COMMAND_BLOCKSBROKEN, "amount", broken);
+			});
 		});
 
 		return true;
