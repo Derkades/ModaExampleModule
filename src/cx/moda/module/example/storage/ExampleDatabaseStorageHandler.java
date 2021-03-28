@@ -1,5 +1,6 @@
 package cx.moda.module.example.storage;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +8,7 @@ import java.util.UUID;
 
 import cx.moda.moda.module.Module;
 import cx.moda.moda.module.storage.DatabaseStorageHandler;
+import xyz.derkades.derkutils.DatabaseUtils;
 
 public class ExampleDatabaseStorageHandler extends DatabaseStorageHandler implements ExampleStorageHandler {
 
@@ -16,28 +18,33 @@ public class ExampleDatabaseStorageHandler extends DatabaseStorageHandler implem
 
 	@Override
 	public void setup() throws SQLException {
-		this.db.createTableIfNonexistent("moda_blocksbroken", "CREATE TABLE `blocksbroken` "
-				+ "(`uuid` VARCHAR(100) NOT NULL, `blocksbroken` INT() NOT NULL, PRIMARY KEY (`uuid`)) ENGINE = InnoDB");
+		try (Connection conn = this.getConnection()) {
+			DatabaseUtils.createTableIfNonexistent(conn, "moda_blocksbroken",
+					"CREATE TABLE `blocksbroken` " +
+					"(`uuid` VARCHAR(100) NOT NULL, `blocksbroken` INT() NOT NULL, PRIMARY KEY (`uuid`)) " +
+					"ENGINE = InnoDB");
+		}
 	}
 
 	@Override
 	public void addBrokenBlocks(final UUID uuid, final int blocksBroken) throws SQLException {
-		try (final PreparedStatement statement = this.db.prepareStatement(
-				"INSERT INTO moda_blocksbroken (uuid, blocksbroken) VALUES (?, ?) ON DUPLICATE KEY UPDATE blocksbroken=blocksbroken+?",
-				uuid, blocksBroken, blocksBroken)) {
+		try (Connection conn = this.getConnection();
+				final PreparedStatement statement = conn.prepareStatement(
+				"INSERT INTO moda_blocksbroken (uuid, blocksbroken) VALUES (?, ?) ON DUPLICATE KEY UPDATE blocksbroken=blocksbroken+?")) {
+			statement.setString(1, uuid.toString());
+			statement.setInt(2, blocksBroken);
+			statement.setInt(3, blocksBroken);
 			statement.execute();
 		}
 	}
 
 	@Override
 	public int getBrokenBlocks(final UUID uuid) throws SQLException {
-		try (final PreparedStatement statement = this.db.prepareStatement("SELECT blocksbroken FROM moda_blocksbroken WHERE uuid=?", uuid)) {
+		try (Connection conn = this.getConnection();
+				final PreparedStatement statement = conn.prepareStatement("SELECT blocksbroken FROM moda_blocksbroken WHERE uuid=?")) {
+			statement.setString(1, uuid.toString());
 			final ResultSet result = statement.executeQuery();
-			if (result.next()) {
-				return result.getInt(0);
-			} else {
-				return 0;
-			}
+			return result.next() ? result.getInt(0) : 0;
 		}
 	}
 }
